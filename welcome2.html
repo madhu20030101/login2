@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .logout-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+            background-color: #d32f2f;
+        }
+
+        .welcome-message {
+            font-size: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="logout-btn" onclick="logout()">Log Out</button>
+    <div class="welcome-message">
+        <h1>Welcome, Admin!</h1>
+    </div>
+
+    <script>
+        // Check if logged in
+        if (!sessionStorage.getItem("isLoggedIn")) {
+            window.location.href = "page3.html";
+        }
+
+        function logout() {
+            sessionStorage.removeItem("isLoggedIn");
+            window.location.href = "page3.html";
+        }
+    </script>
+</body>
+</html>

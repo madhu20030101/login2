@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin and User Page</title>
+    <style>
+        /* Reset margin and padding */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+        }
+
+        .logo-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .logo {
+            width: 250px;
+            height: auto;
+        }
+
+        .main-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: 50px;
+            gap: 40px;
+        }
+
+        .section-box {
+            width: 300px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            background-color: #fff;
+            text-align: center;
+            transition: background-color 0.3s ease;
+        }
+
+        #admin {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #user {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background-color: #555;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .btn-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logo-container">
+        <img src="logo.png" alt="Logo" class="logo">
+    </div>
+
+    <div class="main-container">
+        <!-- Admin Login Section -->
+        <div class="section-box" id="admin">
+            <h2>Admin</h2>
+            <form id="admin-form" onsubmit="validateAdmin(); return false;">
+                <input type="email" id="admin-email" placeholder="Email" class="input-field" required>
+                <input type="password" id="admin-password" placeholder="Password" class="input-field" required>
+                <button type="submit" class="submit-btn">Sign In</button>
+            </form>
+            <div id="error-message" class="error-message">Wrong email or password!</div>
+        </div>
+
+        <div class="section-box" id="user">
+    <h2>User</h2>
+    <form id="user-form" method="POST" action="login.php">
+        <input type="email" name="email" placeholder="Email" class="input-field" required>
+        <input type="password" name="password" placeholder="Password" class="input-field" required>
+        <div class="btn-container">
+            <button type="submit" class="submit-btn">Sign In</button>
+            <button type="button" class="submit-btn" onclick="window.location.href='signup.html'">Sign Up</button>
+        </div>
+    </form>
+</div>
+
+
+        </div>
+    </div>
+
+    <script>
+        const defaultEmail = "admin@gmail.com";
+        const defaultPassword = "123";
+
+        function validateAdmin() {
+            const email = document.getElementById("admin-email").value.trim();
+            const password = document.getElementById("admin-password").value.trim();
+            const errorMessage = document.getElementById("error-message");
+
+            if (email === defaultEmail && password === defaultPassword) {
+                sessionStorage.setItem("isLoggedIn", "true");
+                window.location.href = "welcome2.html";
+            } else {
+                errorMessage.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
